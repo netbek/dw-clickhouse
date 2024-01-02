@@ -9,6 +9,7 @@ source "${scripts_dir}/functions.sh"
 
 cd "${root_dir}"
 
+template_env_dir="template_env"
 env_dir=".env_files"
 cache_file="${env_dir}/.cache.env"
 
@@ -99,7 +100,7 @@ done
 
 # Render the templates
 templates=(
-    template.env            ${env_dir}/.env
+    ${template_env_dir}/clickhouse.env  ${env_dir}/clickhouse.env
 )
 
 for ((i = 1; i < ${#templates[@]}; i+=2)); do
