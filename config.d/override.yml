@@ -1,0 +1,4 @@
+# https://github.com/ClickHouse/ClickHouse/blob/master/programs/server/config.yaml.example
+
+logger:
+  level: notice

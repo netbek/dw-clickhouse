@@ -1,0 +1,28 @@
+# https://github.com/ClickHouse/ClickHouse/blob/master/programs/server/users.yaml.example
+
+profiles:
+  default:
+
+  analytics:
+    allow_experimental_lightweight_delete: 1
+    group_by_use_nulls: 1
+    insert_null_as_default: 1
+    join_default_strictness: ALL
+    join_use_nulls: 1
+
+users:
+  default:
+    profile: default
+    networks:
+      ip: ::/0
+    password: default
+    quota: default
+    access_management: 1
+
+  analytics:
+    profile: analytics
+    networks:
+      ip: ::/0
+    password: analytics
+    quota: default
+    access_management: 0
