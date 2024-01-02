@@ -100,7 +100,8 @@ done
 
 # Render the templates
 templates=(
-    ${template_env_dir}/clickhouse.env  ${env_dir}/clickhouse.env
+    ${template_env_dir}/docker-compose.env       .env
+    ${template_env_dir}/clickhouse.env           ${env_dir}/clickhouse.env
 )
 
 for ((i = 1; i < ${#templates[@]}; i+=2)); do
