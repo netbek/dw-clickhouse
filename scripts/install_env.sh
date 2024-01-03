@@ -102,7 +102,7 @@ for name in "${variable_names[@]}"; do
     echo "${name}=\"${value}\"" >> "${cache_file}"
 done
 
-# Render env files
+# Render .env files
 templates=(
     ${template_env_dir}/docker-compose.env       .env
     ${template_env_dir}/clickhouse.env           ${env_dir}/clickhouse.env
