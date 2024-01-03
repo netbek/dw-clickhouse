@@ -7,6 +7,10 @@ root_dir="${scripts_dir}/.."
 source "${scripts_dir}/variables.sh"
 source "${scripts_dir}/functions.sh"
 
+function echo_help() {
+    echo "Usage: $0 [--cache/--no-cache] [-f|--force] [--clickhouse_username <value>] [--clickhouse_password <value>] [--clickhouse_database <value>]"
+}
+
 cd "${root_dir}"
 
 template_env_dir="template_env"
@@ -49,7 +53,7 @@ while [[ $# -gt 0 ]]; do
             shift
             ;;
         --help)
-            echo "Usage: $0 --clickhouse_username <value> --clickhouse_password <value> --clickhouse_database <value>"
+            echo_help
             exit 0
             ;;
         --clickhouse_username)
@@ -66,7 +70,7 @@ while [[ $# -gt 0 ]]; do
             ;;
         *)
             echo "Unknown option: $1"
-            echo "Usage: $0 --clickhouse_username <value> --clickhouse_password <value> --clickhouse_database <value>"
+            echo_help
             exit 1
             ;;
     esac
@@ -98,7 +102,7 @@ for name in "${variable_names[@]}"; do
     echo "${name}=\"${value}\"" >> "${cache_file}"
 done
 
-# Render the templates
+# Render env files
 templates=(
     ${template_env_dir}/docker-compose.env       .env
     ${template_env_dir}/clickhouse.env           ${env_dir}/clickhouse.env
@@ -113,11 +117,11 @@ for ((i = 1; i < ${#templates[@]}; i+=2)); do
             echo "Skipped ${template_file} because ${output_file} exists"
         fi
     else
-        render_template \
-            "${template_file}"           "${output_file}" \
-            clickhouse_username          "${clickhouse_username}" \
-            clickhouse_password          "${clickhouse_password}" \
-            clickhouse_database          "${clickhouse_database}"
+        render_template . "${template_file}" \
+            "clickhouse_username=${clickhouse_username}" \
+            "clickhouse_password=${clickhouse_password}" \
+            "clickhouse_database=${clickhouse_database}" \
+            > "${output_file}"
 
         if [ -f "${output_file}" ]; then
             if [ "$quiet" == false ]; then
