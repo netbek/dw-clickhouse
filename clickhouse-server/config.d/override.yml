@@ -1,4 +1,11 @@
 # https://github.com/ClickHouse/ClickHouse/blob/master/programs/server/config.yaml.example
 
+compression:
+  case:
+    method: lz4
+
 logger:
   level: notice
+
+send_crash_reports:
+  enabled: false
