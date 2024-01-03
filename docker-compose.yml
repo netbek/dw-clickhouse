@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 # networks:
 #   dw:
@@ -21,8 +21,8 @@ services:
       - ${DW_CLICKHOUSE_NATIVE_PORT:-9000}:9000
       - ${DW_CLICKHOUSE_POSTGRES_PORT:-9005}:9005
     volumes:
-      - ./config.d/override.yml:/etc/clickhouse-server/config.d/override.yml:ro
-      - ./users.d/override.yml:/etc/clickhouse-server/users.d/override.yml:ro
+      - ./clickhouse-server/config.d/override.yml:/etc/clickhouse-server/config.d/override.yml:ro
+      - ./clickhouse-server/users.d/override.yml:/etc/clickhouse-server/users.d/override.yml:ro
       - ./scripts:/scripts:ro
       - clickhouse_data:/var/lib/clickhouse:rw
     healthcheck:
