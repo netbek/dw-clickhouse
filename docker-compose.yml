@@ -21,6 +21,7 @@ services:
       - ${DW_CLICKHOUSE_NATIVE_PORT:-9000}:9000
       - ${DW_CLICKHOUSE_POSTGRES_PORT:-9005}:9005
     volumes:
+      - ./clickhouse-server/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
       - ./clickhouse-server/config.d/override.yml:/etc/clickhouse-server/config.d/override.yml:ro
       - ./clickhouse-server/users.d/override.yml:/etc/clickhouse-server/users.d/override.yml:ro
       - ./scripts:/scripts:ro
