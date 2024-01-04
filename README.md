@@ -35,7 +35,7 @@ alias ach="cd /path/to/dw-clickhouse && docker compose up -d"
 alias sch="cd /path/to/dw-clickhouse && docker compose down"
 ```
 
-Set `/path/to/` to the location of the repository on your machine.
+Set `/path/to/` to the location of the repository on your machine. If you prefer to run the containers in the foreground, then omit the `-d` option.
 
 ## Uninstall
 
@@ -44,6 +44,16 @@ To delete all the data and Docker images, run:
 ```shell
 ./scripts/uninstall.sh
 ```
+
+## Usage
+
+Start the ClickHouse container in detached mode:
+
+```shell
+docker compose up -d
+```
+
+If you prefer to run the containers in the foreground, then omit the `-d` option.
 
 ## Networking
 
