@@ -1,21 +1,15 @@
 version: "3.8"
 
-# networks:
-#   dw:
-#     external: true
-
 volumes:
   clickhouse_data:
 
 services:
   clickhouse:
-    image: clickhouse/clickhouse-server:23.12.1.1368-alpine
+    image: clickhouse/clickhouse-server:23.8.8.20-alpine
     env_file:
       - ./.env_files/clickhouse.env
     extra_hosts:
       - host.docker.internal:host-gateway
-    # networks:
-    #   - dw
     ports:
       - ${DW_CLICKHOUSE_HTTP_PORT:-8123}:8123
       - ${DW_CLICKHOUSE_NATIVE_PORT:-9000}:9000
