@@ -104,8 +104,8 @@ done
 
 # Render .env files
 templates=(
-    docker-compose.env.jinja2       ./.env
-    clickhouse.env.jinja2           ${env_dir}/clickhouse.env
+    env.jinja2                                ./.env
+    env_files/clickhouse.env.jinja2           ${env_dir}/clickhouse.env
 )
 context=(
     "clickhouse_username=${clickhouse_username}"
