@@ -55,7 +55,13 @@ docker compose up -d
 
 If you prefer to run the containers in the foreground, then omit the `-d` option.
 
+## Database connections
+
+TODO Add note about connection settings for ClickHouse
+
 ## Networking
+
+Ports can optionally be exposed. The configuration is loaded from `./.env` during startup.
 
 The following ports are exposed:
 
@@ -64,8 +70,6 @@ The following ports are exposed:
 | clickhouse         | 29000 | HTTP                  |
 | clickhouse         | 29001 | Native/TCP            |
 | clickhouse         | 29002 | Postgres emulation    |
-
-The configuration is loaded from `./.env` during startup. The default values are in `./template_env/docker-compose.env`.
 
 ## License
 
