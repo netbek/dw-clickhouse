@@ -3,7 +3,7 @@
 profiles:
   default:
 
-  analytics:
+  analyst:
     allow_experimental_lightweight_delete: 1
     group_by_use_nulls: 1
     insert_null_as_default: 1
@@ -11,6 +11,7 @@ profiles:
     join_use_nulls: 1
 
 users:
+  # Superuser
   default:
     profile: default
     networks:
@@ -19,10 +20,11 @@ users:
     quota: default
     access_management: 1
 
-  analytics:
-    profile: analytics
+  # User who has read and write access to analytics databases
+  analyst:
+    profile: analyst
     networks:
       ip: ::/0
-    password: analytics
+    password: analyst
     quota: default
     access_management: 0
