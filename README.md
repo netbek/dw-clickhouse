@@ -63,8 +63,6 @@ TODO Add note about connection settings for ClickHouse
 
 Ports can optionally be exposed. The configuration is loaded from `./.env` during startup.
 
-The following ports are exposed:
-
 | Service            | Port  | Protocol              |
 |--------------------|-------|-----------------------|
 | clickhouse         | 29000 | HTTP                  |
