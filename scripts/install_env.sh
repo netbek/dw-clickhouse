@@ -13,8 +13,8 @@ function echo_help() {
 
 cd "${root_dir}"
 
-template_env_dir="template_env"
-env_dir=".env_files"
+template_env_dir="./template_env"
+env_dir="./.env_files"
 cache_file="${env_dir}/.cache.env"
 
 declare -a variable_names=( \
@@ -104,8 +104,13 @@ done
 
 # Render .env files
 templates=(
-    ${template_env_dir}/docker-compose.env       .env
-    ${template_env_dir}/clickhouse.env           ${env_dir}/clickhouse.env
+    docker-compose.env.jinja2       ./.env
+    clickhouse.env.jinja2           ${env_dir}/clickhouse.env
+)
+context=(
+    "clickhouse_username=${clickhouse_username}"
+    "clickhouse_password=${clickhouse_password}"
+    "clickhouse_database=${clickhouse_database}"
 )
 
 for ((i = 1; i < ${#templates[@]}; i+=2)); do
@@ -117,11 +122,7 @@ for ((i = 1; i < ${#templates[@]}; i+=2)); do
             echo "Skipped ${template_file} because ${output_file} exists"
         fi
     else
-        render_template . "${template_file}" \
-            "clickhouse_username=${clickhouse_username}" \
-            "clickhouse_password=${clickhouse_password}" \
-            "clickhouse_database=${clickhouse_database}" \
-            > "${output_file}"
+        render_template "${template_env_dir}" "${template_file}" "${context[@]}" > "${output_file}"
 
         if [ -f "${output_file}" ]; then
             if [ "$quiet" == false ]; then
