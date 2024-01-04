@@ -8,7 +8,7 @@ source "${scripts_dir}/variables.sh"
 source "${scripts_dir}/functions.sh"
 
 function echo_help() {
-    echo "Usage: $0 [--cache/--no-cache] [-f|--force] [--clickhouse_username <value>] [--clickhouse_password <value>] [--clickhouse_database <value>]"
+    echo "Usage: $0 [--cache/--no-cache] [-f|--force] [--clickhouse_default_username <value>] [--clickhouse_default_password <value>] [--clickhouse_default_database <value>]"
 }
 
 cd "${root_dir}"
@@ -18,9 +18,9 @@ env_dir="./.env_files"
 cache_file="${env_dir}/.cache.env"
 
 declare -a variable_names=( \
-    "clickhouse_username" \
-    "clickhouse_password" \
-    "clickhouse_database"
+    "clickhouse_default_username" \
+    "clickhouse_default_password" \
+    "clickhouse_default_database"
 )
 
 mkdir -p "${env_dir}"
@@ -56,16 +56,16 @@ while [[ $# -gt 0 ]]; do
             echo_help
             exit 0
             ;;
-        --clickhouse_username)
-            clickhouse_username=$2
+        --clickhouse_default_username)
+            clickhouse_default_username=$2
             shift 2
             ;;
-        --clickhouse_password)
-            clickhouse_password=$2
+        --clickhouse_default_password)
+            clickhouse_default_password=$2
             shift 2
             ;;
-        --clickhouse_database)
-            clickhouse_database=$2
+        --clickhouse_default_database)
+            clickhouse_default_database=$2
             shift 2
             ;;
         *)
@@ -108,9 +108,9 @@ templates=(
     env_files/clickhouse.env.jinja2           ${env_dir}/clickhouse.env
 )
 context=(
-    "clickhouse_username=${clickhouse_username}"
-    "clickhouse_password=${clickhouse_password}"
-    "clickhouse_database=${clickhouse_database}"
+    "clickhouse_default_username=${clickhouse_default_username}"
+    "clickhouse_default_password=${clickhouse_default_password}"
+    "clickhouse_default_database=${clickhouse_default_database}"
 )
 
 for ((i = 1; i < ${#templates[@]}; i+=2)); do
