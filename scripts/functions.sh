@@ -49,3 +49,7 @@ function render_template() {
         ghcr.io/netbek/jinja2-docker:v0.0.5 \
         "${context[@]}"
 }
+
+function yq_cmd() {
+    docker run --rm -i -v "${PWD}":/workdir mikefarah/yq:4.40.4 "$@"
+}
