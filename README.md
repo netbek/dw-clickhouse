@@ -12,7 +12,7 @@ Run the install script:
 
 ### DBeaver
 
-GUI client for ClickHouse and other databases. To install, run:
+Client for ClickHouse and other databases. To install, run:
 
 ```shell
 curl https://dbeaver.io/debs/dbeaver.gpg.key | sudo apt-key add -
@@ -57,7 +57,23 @@ If you prefer to run the containers in the foreground, then omit the `-d` option
 
 ## Database connections
 
-TODO Add note about connection settings for ClickHouse
+The default settings for the ClickHouse server are:
+
+```yaml
+Host: localhost
+Port: 29000
+Username: analyst
+Password: analyst
+Database: analytics
+```
+
+Examples:
+
+| Command                                                                                       | Description                                       |
+|-----------------------------------------------------------------------------------------------|---------------------------------------------------|
+| `clickhouse-client -h localhost -p 29001 -u analyst --password analyst -d analytics`          | Use `clickhouse-client` installed on host machine |
+| `docker compose exec clickhouse clickhouse-client -u analyst --password analyst -d analytics` | Use `clickhouse-client` installed in container    |
+| `psql -h localhost -p 29002 -U analyst -d analytics`                                          | Use `psql` installed on host machine              |
 
 ## Networking
 
