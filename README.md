@@ -69,11 +69,11 @@ Database: analytics
 
 Examples:
 
-| Command                                                                                       | Description                                       |
-|-----------------------------------------------------------------------------------------------|---------------------------------------------------|
-| `clickhouse-client -h localhost -p 29001 -u analyst --password analyst -d analytics`          | Use `clickhouse-client` installed on host machine |
-| `docker compose exec clickhouse clickhouse-client -u analyst --password analyst -d analytics` | Use `clickhouse-client` installed in container    |
-| `psql -h localhost -p 29002 -U analyst -d analytics`                                          | Use `psql` installed on host machine              |
+| Description                                       | Command                                                                                       |
+|---------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| Use `clickhouse-client` installed on host machine | `clickhouse-client -h localhost -p 29001 -u analyst --password analyst -d analytics`          |
+| Use `clickhouse-client` installed in container    | `docker compose exec clickhouse clickhouse-client -u analyst --password analyst -d analytics` |
+| Use `psql` installed on host machine              | `psql -h localhost -p 29002 -U analyst -d analytics`                                          |
 
 ## Networking
 
