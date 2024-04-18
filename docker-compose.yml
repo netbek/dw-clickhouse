@@ -5,7 +5,7 @@ volumes:
 
 services:
   clickhouse:
-    image: clickhouse/clickhouse-server:23.8.8.20-alpine
+    image: clickhouse/clickhouse-server:24.3.2.23-alpine
     env_file:
       - ./.env_files/clickhouse.env
     extra_hosts:
