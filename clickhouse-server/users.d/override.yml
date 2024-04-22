@@ -4,6 +4,7 @@ profiles:
   default:
 
   analyst:
+    # allow_experimental_analyzer: 0 # https://github.com/ClickHouse/ClickHouse/issues/62594
     allow_experimental_lightweight_delete: 1
     group_by_use_nulls: 1
     insert_null_as_default: 1
