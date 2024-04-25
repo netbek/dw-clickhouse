@@ -5,7 +5,8 @@ volumes:
 
 services:
   clickhouse:
-    image: clickhouse/clickhouse-server:24.3.2.23-alpine
+    build:
+      context: .
     env_file:
       - ./.env_files/clickhouse.env
     extra_hosts:
@@ -18,6 +19,8 @@ services:
       - ./clickhouse-server/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
       - ./clickhouse-server/config.d/override.yml:/etc/clickhouse-server/config.d/override.yml:ro
       - ./clickhouse-server/users.d/override.yml:/etc/clickhouse-server/users.d/override.yml:ro
+      - ./etc/odbc.ini:/etc/odbc.ini:ro
+      - ./etc/odbcinst.ini:/etc/odbcinst.ini:ro
       - ./scripts:/scripts:ro
       - clickhouse_data:/var/lib/clickhouse:rw
     healthcheck:
