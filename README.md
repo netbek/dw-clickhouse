@@ -85,6 +85,18 @@ Ports can optionally be exposed. The configuration is loaded from `./.env` durin
 | `clickhouse`       | 29001 | Native/TCP            |
 | `clickhouse`       | 29002 | Postgres emulation    |
 
+## Connecting to remote database via ODBC
+
+The configuration is loaded from `./etc/odbc.ini` during startup.
+
+```sql
+select * from odbc('dsn=<DATA_SOURCE>', '<SCHEMA>', '<TABLE>');
+```
+
+`DATA_SOURCE`: Name of a section in `./etc/odbc.ini`
+
+See [the ClickHouse docs](https://clickhouse.com/docs/en/sql-reference/table-functions/odbc) for more info.
+
 ## License
 
 Copyright (c) 2023 Hein Bekker. Licensed under the GNU Affero General Public License, version 3.
