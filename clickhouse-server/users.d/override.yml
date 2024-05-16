@@ -15,6 +15,7 @@ profiles:
     insert_null_as_default: 1
     join_default_strictness: ALL
     join_use_nulls: 1
+    max_memory_usage: 8000000000 # 8GB
 
 users:
   # Superuser
