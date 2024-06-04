@@ -9,3 +9,7 @@ logger:
 
 send_crash_reports:
   enabled: false
+
+# session_log:
+#   database: system
+#   table: session_log
