@@ -27,7 +27,7 @@ users:
     quota: default
     access_management: 1
 
-  # User who has read and write access to analytics databases
+  # User who has read and write access to analytics database
   analyst:
     profile: analyst
     networks:
