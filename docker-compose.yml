@@ -28,3 +28,5 @@ services:
     deploy:
       restart_policy:
         condition: on-failure
+    cap_add:
+      - CAP_SYS_NICE # https://github.com/ClickHouse/ClickHouse/issues/68747#issuecomment-2306631664
