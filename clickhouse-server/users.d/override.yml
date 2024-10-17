@@ -27,6 +27,15 @@ users:
     quota: default
     access_management: 1
 
+  # User who has read access to replicated database
+  peerdb:
+    profile: default
+    networks:
+      ip: ::/0
+    password: peerdb
+    quota: default
+    access_management: 0
+
   # User who has read and write access to analytics database
   analyst:
     profile: analyst
