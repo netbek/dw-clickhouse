@@ -27,7 +27,7 @@ users:
     quota: default
     access_management: 1
 
-  # User who has read access to replicated database
+  # User who has read and write access to replicated database
   peerdb:
     profile: default
     networks:
