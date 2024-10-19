@@ -16,8 +16,8 @@ services:
       - ${DW_CLICKHOUSE_POSTGRES_PORT:-9005}:9005
     volumes:
       - ./clickhouse-server/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
-      - ./clickhouse-server/config.d/override.yml:/etc/clickhouse-server/config.d/override.yml:ro
-      - ./clickhouse-server/users.d/override.yml:/etc/clickhouse-server/users.d/override.yml:ro
+      - ./clickhouse-server/config.d/override.xml:/etc/clickhouse-server/config.d/override.xml:ro
+      - ./clickhouse-server/users.d/override.xml:/etc/clickhouse-server/users.d/override.xml:ro
       - ./scripts:/scripts:ro
       - clickhouse_data:/var/lib/clickhouse:rw
     healthcheck:
