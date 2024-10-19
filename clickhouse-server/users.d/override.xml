@@ -42,7 +42,6 @@
         <ip>::/0</ip>
       </networks>
       <password>peerdb</password>
-      <default_database>peerdb</default_database>
       <quota>default</quota>
       <access_management>0</access_management>
     </peerdb>
