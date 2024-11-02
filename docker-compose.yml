@@ -1,25 +1,53 @@
 version: "3.8"
 
 volumes:
-  clickhouse_data:
+  clickhouse-prod-data:
+  clickhouse-test-data:
 
 services:
-  clickhouse:
+  clickhouse-prod:
     image: clickhouse/clickhouse-server:24.8.5.115-alpine
     env_file:
       - ./.env_files/clickhouse.env
     extra_hosts:
       - host.docker.internal:host-gateway
     ports:
-      - ${DW_CLICKHOUSE_HTTP_PORT:-8123}:8123
-      - ${DW_CLICKHOUSE_NATIVE_PORT:-9000}:9000
-      - ${DW_CLICKHOUSE_POSTGRES_PORT:-9005}:9005
+      - ${DW_CLICKHOUSE_PROD_HTTP_PORT:-8123}:8123
+      - ${DW_CLICKHOUSE_PROD_NATIVE_PORT:-9000}:9000
+      - ${DW_CLICKHOUSE_PROD_POSTGRES_PORT:-9005}:9005
     volumes:
       - ./clickhouse-server/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
       - ./clickhouse-server/config.d/override.xml:/etc/clickhouse-server/config.d/override.xml:ro
       - ./clickhouse-server/users.d/override.xml:/etc/clickhouse-server/users.d/override.xml:ro
       - ./scripts:/scripts:ro
-      - clickhouse_data:/var/lib/clickhouse:rw
+      - clickhouse-prod-data:/var/lib/clickhouse:rw
+    healthcheck:
+      test: wget --no-verbose --spider http://localhost:8123/ping || exit 1
+      interval: 1s
+      timeout: 1s
+      retries: 10
+    deploy:
+      restart_policy:
+        condition: on-failure
+    cap_add:
+      - CAP_SYS_NICE # https://github.com/ClickHouse/ClickHouse/issues/68747#issuecomment-2306631664
+
+  clickhouse-test:
+    image: clickhouse/clickhouse-server:24.8.5.115-alpine
+    env_file:
+      - ./.env_files/clickhouse.env
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    ports:
+      - ${DW_CLICKHOUSE_TEST_HTTP_PORT:-8123}:8123
+      - ${DW_CLICKHOUSE_TEST_NATIVE_PORT:-9000}:9000
+      - ${DW_CLICKHOUSE_TEST_POSTGRES_PORT:-9005}:9005
+    volumes:
+      - ./clickhouse-server/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
+      - ./clickhouse-server/config.d/override.xml:/etc/clickhouse-server/config.d/override.xml:ro
+      - ./clickhouse-server/users.d/override.xml:/etc/clickhouse-server/users.d/override.xml:ro
+      - ./scripts:/scripts:ro
+      - clickhouse-test-data:/var/lib/clickhouse:rw
     healthcheck:
       test: wget --no-verbose --spider http://localhost:8123/ping || exit 1
       interval: 1s

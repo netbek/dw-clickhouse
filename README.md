@@ -79,11 +79,14 @@ Examples:
 
 Ports can optionally be exposed. The configuration is loaded from `./.env` during startup.
 
-| Service            | Port  | Protocol              |
-|--------------------|-------|-----------------------|
-| `clickhouse`       | 29000 | HTTP                  |
-| `clickhouse`       | 29001 | Native/TCP            |
-| `clickhouse`       | 29002 | Postgres emulation    |
+| Service              | Port  | Protocol              |
+|----------------------|-------|-----------------------|
+| `clickhouse-prod`    | 29000 | HTTP                  |
+| `clickhouse-prod`    | 29001 | Native/TCP            |
+| `clickhouse-prod`    | 29002 | Postgres emulation    |
+| `clickhouse-test`    | 29010 | HTTP                  |
+| `clickhouse-test`    | 29011 | Native/TCP            |
+| `clickhouse-test`    | 29012 | Postgres emulation    |
 
 ## License
 
