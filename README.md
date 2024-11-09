@@ -81,9 +81,9 @@ Ports can optionally be exposed. The configuration is loaded from `./.env` durin
 
 | Service              | Port  | Protocol              |
 |----------------------|-------|-----------------------|
-| `clickhouse-prod`    | 29000 | HTTP                  |
-| `clickhouse-prod`    | 29001 | Native/TCP            |
-| `clickhouse-prod`    | 29002 | Postgres emulation    |
+| `clickhouse`         | 29000 | HTTP                  |
+| `clickhouse`         | 29001 | Native/TCP            |
+| `clickhouse`         | 29002 | Postgres emulation    |
 
 ## License
 
